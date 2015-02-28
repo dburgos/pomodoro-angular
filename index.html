@@ -4,13 +4,12 @@
     <title>AngularJS Pomodoro App</title>
     <script src="js/vendor/angular.min.js"></script>
     <script src="js/pomodoroApp.js"></script>
+    <script src="js/service.js"></script>
+    <script src="js/controller.js"></script>
   </head>
   <body>
-    <header>
-      <h3>Pomodoro</h3>
-    </header>
     <section ng-controller="pomodoroCtrl">
-      <div ng-show="!current.left">
+      <div ng-hide="current.left">
         <input id="newTask" type="text" value="" placeholder="Task description" size="30" />
         <button ng-click="start()">Start task</button>
       </div>
@@ -19,14 +18,14 @@
       <h2>{{current.txt}}</h2>
 
       <div ng-show="current.left">
-        <button ng-click="pause()">Pause</button>
-        <button ng-click="resume()">Resume</button>
+        <button ng-click="pause()" ng-show="active">Pause</button>
+        <button ng-click="resume()" ng-hide="active">Resume</button>
       </div>
 
       <ul class="unstyled" ng-show="tasks.length > 0">
         <span>{{tasks.length}} tasks done:</span>
         <li ng-repeat="task in tasks">
-          <input type="checkbox" ng-model="true">
+          <input type="checkbox">
           <span class="done">{{task.txt}}</span>
         </li>
       </ul>
