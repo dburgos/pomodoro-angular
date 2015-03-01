@@ -20,18 +20,18 @@
 
       <div ng-show="current">
         <h1>{{humanizeTimeleft()}}</h1>
-        <h2>{{current.txt}}</h2>
-        <button ng-click="pause()" ng-show="active" class="btn btn-default">
+        <h2 class="mb3">{{current.txt}}</h2>
+        <button ng-click="pause()" ng-show="isActive" class="btn btn-default">
           <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause</button>
-        <button ng-click="resume()" ng-hide="active" class="btn btn-info">
+        <button ng-click="resume()" ng-hide="isActive" class="btn btn-info">
           <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Resume</button>
-        <button ng-click="stop()" class="btn btn-default">
+        <button ng-click="stop()" class="btn btn-danger">
           <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop</button>
       </div>
 
-      <ul ng-show="tasks.length > 0">
+      <ul ng-show="tasks.length > 0" class="mt3 list-unstyled">
         <span>{{tasks.length}} tasks done:</span>
-        <li ng-repeat="task in tasks">
+        <li ng-repeat="task in tasks track by $index">
           <input type="checkbox" checked />
           <span class="done">{{task.txt}}</span>
         </li>

@@ -4,6 +4,10 @@ pomodoroApp.factory('localStorage', function ($q) {
   var store = {
     tasks: [],
 
+    _getFromLocalStorage: function () {
+      return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+    },
+
     _saveToLocalStorage: function (tasks) {
       localStorage.setItem(STORAGE_ID, JSON.stringify(tasks));
     },
@@ -19,6 +23,8 @@ pomodoroApp.factory('localStorage', function ($q) {
       return deferred.promise;
     }
   };
+
+  store.tasks = store._getFromLocalStorage();
 
   return store;
 });
