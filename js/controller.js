@@ -11,7 +11,7 @@ pomodoroApp.controller('pomodoroCtrl',['$scope', '$interval','localStorage', fun
     // Save current task
     $scope.current = {
       txt:  textEl.value,
-      left: 1*60
+      left: 25*60
     };
     // Clean task description
     textEl.value = "";
@@ -44,7 +44,7 @@ pomodoroApp.controller('pomodoroCtrl',['$scope', '$interval','localStorage', fun
 
   $scope.humanizeTimeleft = function() {
     var text = "";
-    if($scope.current && $scope.curent.left) {
+    if($scope.current && $scope.current.left) {
       var minutes = Math.floor($scope.current.left / 60);
       var seconds = $scope.current.left - minutes * 60;
       text = _pad(minutes,2) + ':' + _pad(seconds,2);
