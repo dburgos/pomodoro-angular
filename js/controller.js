@@ -6,13 +6,18 @@ pomodoroApp.controller('pomodoroCtrl',['$scope', '$interval','localStorage', fun
   $scope.tasks    = store.tasks;
 
   $scope.start = function() {
+    // Cache DOM element
     var textEl = document.getElementById('newTask');
+    // Save current task
     $scope.current = {
       txt:  textEl.value,
-      left: 25*60
+      left: 11*60
     };
+    // Clean task description
     textEl.value = "";
+    // Execute timer
     _runTimer();
+    // Set a 1s interval for the timer
     timer = $interval(function(){
       _runTimer();
     }, 1000);
@@ -33,6 +38,12 @@ pomodoroApp.controller('pomodoroCtrl',['$scope', '$interval','localStorage', fun
       });
   };
 
+  $scope.humanizeTimeleft = function() {
+    var minutes = Math.floor($scope.current.left / 60);
+    var seconds = $scope.current.left - minutes * 60;
+    return _pad(minutes,2) + ':' + _pad(seconds,2);
+  };
+
   var _runTimer = function() {
     if($scope.active) {
       $scope.current.left -= 1;
@@ -41,6 +52,12 @@ pomodoroApp.controller('pomodoroCtrl',['$scope', '$interval','localStorage', fun
         $scope.finish();
       }
     }
-  }
+  };
+
+  var _pad = function(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
+  };
 
  }]);
