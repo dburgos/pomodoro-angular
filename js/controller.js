@@ -31,6 +31,10 @@ pomodoroApp.controller('pomodoroCtrl',['$scope', '$interval','localStorage', fun
     $scope.active = true;
   };
 
+  $scope.stop = function() {
+    $scope.current = null;
+  };
+
   $scope.finish = function() {
     store.add($scope.current)
       .then(function success() {

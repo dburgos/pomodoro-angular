@@ -25,6 +25,8 @@
           <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause</button>
         <button ng-click="resume()" ng-hide="active" class="btn btn-info">
           <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Resume</button>
+        <button ng-click="stop()" class="btn btn-default">
+          <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop</button>
       </div>
 
       <ul ng-show="tasks.length > 0">
