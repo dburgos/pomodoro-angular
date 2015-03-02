@@ -1,9 +1,10 @@
 # pomodoro-angular
-Yet another Pomodoro minimal app powered by AngularJS for learning purposes
+Yet another Pomodoro minimal app powered by AngularJS
+
+![Screenshot](http://s24.postimg.org/z3fy2fx3p/Captura_de_pantalla_2015_03_02_09_22_57.png)
 
 ## Getting started
 Open index.html in any web browser
-
 
 ## Features
 - Create new task (25 min)
