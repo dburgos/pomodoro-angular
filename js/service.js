@@ -1,30 +1,39 @@
-pomodoroApp.factory('localStorage', function ($q) {
+(function(){
   'use strict';
-  var STORAGE_ID = 'pomodoro-angular';
-  var store = {
-    tasks: [],
 
-    _getFromLocalStorage: function () {
-      return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
-    },
+  angular
+    .module('pomodoroApp')
+    .factory('localStorage', [storageFactory]);
 
-    _saveToLocalStorage: function (tasks) {
-      localStorage.setItem(STORAGE_ID, JSON.stringify(tasks));
-    },
+  function storageFactory($q) {
+    'use strict';
+    var STORAGE_ID = 'pomodoro-angular';
+    var store = {
+      tasks: [],
 
-    add: function (task) {
-      var deferred = $q.defer();
+      _getFromLocalStorage: function () {
+        return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+      },
 
-      store.tasks.push(task);
+      _saveToLocalStorage: function (tasks) {
+        localStorage.setItem(STORAGE_ID, JSON.stringify(tasks));
+      },
 
-      store._saveToLocalStorage(store.tasks);
-      deferred.resolve(store.tasks);
+      add: function (task) {
+        var deferred = $q.defer();
 
-      return deferred.promise;
-    }
-  };
+        store.tasks.push(task);
 
-  store.tasks = store._getFromLocalStorage();
+        store._saveToLocalStorage(store.tasks);
+        deferred.resolve(store.tasks);
 
-  return store;
-});
+        return deferred.promise;
+      }
+    };
+
+    store.tasks = store._getFromLocalStorage();
+
+    return store;
+  }
+
+})();

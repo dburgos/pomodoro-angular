@@ -1,1 +1,7 @@
-var pomodoroApp = angular.module('pomodoroApp', []);
+(function(){
+  'use strict';
+
+  angular
+    .module('pomodoroApp', []);
+
+})();
